@@ -4,74 +4,63 @@ def usuario_escolhe_jogada(n,m):
     while m > limite or m < 0 or m  == 0:
         print("Valor inválido! ")
         m = int(input("Inisira o numero de peças que deseja retirar do tabuleiro: "))
-    if m > n:
+    if m > n or n == m :
         m = n
     return m
 
 def computador_escolhe_jogada(n,m):
-    i = 0
-    limite = m
+    i = 1
     if m > n or n == m:
         m = n
         return m
-    
-    if n % 2 == 1 and m % 2 == 1:
-        m = 1
-        return m
-
     else:
         while True:
-            if n % (m+1) == 0:
-                return i 
+            if m % 2 == 0:
+                return m
+                break
+            elif m % 2 != 0:
+                return m - 1
                 break
             else:
-                print("Mais um")
-                n = n - 1
-                i = i + 1
-            
-            
-
+                return i
+               # i = i + 1
+                #if m >= n//2 or
 def partida():
     n = int(input("Insira o numero de peças do tabuleiro: "))
-    m = int(input("Insira o número máximo de peças a serem retiradas por jogada"))
+    m = int(input("Insira o número máximo de peças a serem retiradas por jogada: "))
     if  m < 0 or n < 0:
         print("Valores insvalidos!!")
         partida()
     if n % (m+1) == 0:
-        print ("Usuário começa!")
+        print ("Você começa")
         while n >= 0:
-            m = usuario_escolhe_jogada(n,m)
-            n = n - m
-            print("O usuário retirou",m,"peças \nRestam",n,"peças no tabuleiro")
+            u = usuario_escolhe_jogada(n,m)
+            n = n - u
+            print("O usuário retirou",u,"peças \nRestam",n,"peças no tabuleiro")
             if n == 0:
-                print("Usuário venceu.")
+                print("Fim do jogo! O usuário ganhou!")
                 break
-            m = computador_escolhe_jogada(n,m)
-            n = n - m
-            print("O computador retirou",m,"peças \nRestam",n,"peças no tabuleiro")
+            c = computador_escolhe_jogada(n,m)
+            n = n - c
+            print("O computador retirou",c,"peças \nRestam",n,"peças no tabuleiro")
             if n == 0:
-                print("Computador venceu!")
+                print("Fim do jogo! O computador ganhou!")
                 break
-
-    
-        
     else:        
-        print ("Computador começa!")
         while n >= 0:
-            m = computador_escolhe_jogada(n,m)
-            n = n - m
-            print("O computador retirou",m,"peças \nRestam",n,"peças no tabuleiro")
+            c = computador_escolhe_jogada(n,m)
+            n = n - c
+            print("O computador retirou",c,"peças \nRestam",n,"peças no tabuleiro")
             if n == 0:
-                print("Computador venceu!")
+                print("Fim do jogo! O computador ganhou!")
                 break
-            m = usuario_escolhe_jogada(n,m)
-            n = n - m
-            print("O usuário retirou",m,"peças \nRestam",n,"peças no tabuleiro")
+            u = usuario_escolhe_jogada(n,m)
+            n = n - u
+            print("O usuário retirou",u,"peças \nRestam",n,"peças no tabuleiro")
             if n == 0:
-                print("Usuário venceu!")
+                print("Fim do jogo! O usuário ganhou!")
                 break
-            
-        
+               
 def campeonato():
     print("Modo campeonato")
     champs = 4
@@ -80,7 +69,6 @@ def campeonato():
         if champs == 0:
             break
         partida()
-
 
 def main():
     n = 0
@@ -92,6 +80,5 @@ def main():
         if jogo == 2:
             campeonato()
         
-    
 main()
 
