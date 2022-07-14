@@ -28,14 +28,14 @@ def le_textos():
 
 def separa_sentencas(texto):
     '''A funcao recebe um texto e devolve uma lista das sentencas dentro do texto'''
-    sentencas = re.split(r'^[.!?]', texto)
+    sentencas = re.split(r'[.!?]+', texto)
     if sentencas[-1] == '':
         del sentencas[-1]
     return sentencas
 
 def separa_frases(sentenca):
     '''A funcao recebe uma sentenca e devolve uma lista das frases dentro da sentenca'''
-    return re.split(r'[,:;]', sentenca)
+    return re.split(r'[,:;]+', sentenca)
 
 def separa_palavras(frase):
     '''A funcao recebe uma frase e devolve uma lista das palavras dentro da frase'''
@@ -83,29 +83,41 @@ def avalia_textos(textos, ass_cp):
 
 def conta_caracteres(texto):
     soma = 0
-    for i in re.split(r'\W+', textos):
+    for i in re.split(r'\W+', textos[1]):
         soma = soma + len(i)
     return soma
 
-def conta_palavras(sentencas):
-    return len(sentencas.split())
+def conta_palavras(texto):
+    return len(texto.split())
+
+def lista_palavras(texto):
+    return texto.split()
+
+def conta_frases(texto):
+    return len(texto)
+#conta_sentencas
+
 
 #le_assinatura()
-textos = str(le_textos())
-sentencas = str(separa_sentencas(textos))
-frases = str(separa_frases(sentencas))
-palavras = str(separa_palavras(frases))
-
-
+textos = le_textos()
+sentencas = separa_sentencas(textos[1])
+frases = separa_frases(textos[1])
+#palavras = str(separa_palavras(frases))
+#unicas= n_palavras_unicas(lista_palavras(textos))
+#diferentes = n_palavras_diferentes(lista_palavras(textos))
+#print(unicas)
+#print(diferentes)
 
 
 #palavras = separa_palavras(str(frases))
-#print(textos)
+#acaprint(textos)
 #print(sentencas)
-#print(frases.split())
 #print(palavras)
-#print(conta_caracteres(textos))
-#print(textos)
+print("Numero de caracteres", conta_caracteres(textos[1]))
+print("Numero de palavras", conta_palavras(textos[1]))
+print("Numero de sentenças", conta_frases(frases))
+#print(len(frases.split(",")))
+#print(textos[1])
 #print(sentencas)
 #print(frases)
 #print(palavras)
