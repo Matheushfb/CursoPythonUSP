@@ -87,38 +87,27 @@ def conta_caracteres(texto):
         soma = soma + len(i)
     return soma
 
-def conta_palavras(texto):
-    return len(texto.split())
-
-def lista_palavras(texto):
-    return texto.split()
-
-def conta_frases(texto):
-    return len(texto)
-#conta_sentencas
 
 
 #le_assinatura()
 textos = le_textos()
 sentencas = separa_sentencas(textos[1])
 frases = separa_frases(textos[1])
-#palavras = str(separa_palavras(frases))
-#unicas= n_palavras_unicas(lista_palavras(textos))
-#diferentes = n_palavras_diferentes(lista_palavras(textos))
-#print(unicas)
-#print(diferentes)
+palavras = separa_palavras(textos[1])
+total_caracteres = conta_caracteres(textos[1])
+print("total_caracteres",total_caracteres)
+print("sentencas",len(sentencas))
+print("frases",len(frases))
+print("palavras",len(palavras))
+print(n_palavras_unicas(palavras))
+print(n_palavras_diferentes(palavras))
+    
+wal = total_caracteres/len(palavras)
+ttr = n_palavras_diferentes(palavras)/len(palavras) 
+hlr = n_palavras_unicas(palavras)/len(palavras)
+sal = total_caracteres/len(sentencas)
 
-
-#palavras = separa_palavras(str(frases))
-#acaprint(textos)
-#print(sentencas)
-#print(palavras)
-print("Numero de caracteres", conta_caracteres(textos[1]))
-print("Numero de palavras", conta_palavras(textos[1]))
-print("Numero de sentenças", conta_frases(frases))
-#print(len(frases.split(",")))
-#print(textos[1])
-#print(sentencas)
-#print(frases)
-#print(palavras)
-
+print("valor de wal é: ", wal)
+print("valor de ttr é: ", ttr)
+print("valor de hlr é: ", hlr)
+print("valor de sal é: ", sal)
