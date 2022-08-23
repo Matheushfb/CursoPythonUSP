@@ -79,14 +79,13 @@ def n_palavras_diferentes(lista_palavras):
 
 def compara_assinatura(as_a, as_b):
     """IMPLEMENTAR. Essa funcao recebe duas assinaturas de texto e deve devolver o grau de similaridade nas assinaturas."""
-    print("este é a", as_a)
-    print("este é b", as_b)
     i = 0
-    soma = 0
+    somatoria =0
     while i < len(as_b):
-        soma = as_a[i] + as_b[i]
+        somatoria += abs(as_a[i] - as_b[i])
         i = i + 1
-    grau_similaridade = (soma//6)
+    grau_similaridade = somatoria/6
+
     return grau_similaridade
 
 
@@ -100,7 +99,6 @@ def calcula_assinatura(texto):
     sentencas = separa_sentencas(texto)
     frases = []
     palavras = []
-    caracteres = []
     for sent in sentencas:
         frases += separa_frases(sent)
     for fr in frases:
@@ -125,43 +123,19 @@ def calcula_assinatura(texto):
 
 def avalia_textos(textos, ass_cp):
     """IMPLEMENTAR. Essa funcao recebe uma lista de textos e uma assinatura ass_cp e deve devolver o numero (1 a n) do texto com maior probabilidade de ter sido infectado por COH-PIAH."""
+    print (textos)
+    print (ass_cp)
     pass
-
-
-def conta_caracteres(texto):
-    soma = 0
-    for i in re.split(r'\W+', texto):
-        soma = soma + len(i)
-    return soma
-
-
 def main():
+    as_cp = []
     as_b = (le_assinatura())
     textos = le_textos()
-    print(type(textos))
     i = 0
     while i < len(textos):
         print("Este é o texto", i+1)
         as_a = calcula_assinatura(textos[i])
-        print(compara_assinatura(as_a, as_b))
+        as_cp.append((compara_assinatura(as_a, as_b)))
         i = i + 1
-
+    avalia_textos(textos, as_cp)
 
 main()
-# print("frases",len(frases))
-# print("palavras",len(palavras))
-# print(n_palavras_unicas(palavras))
-# print(n_palavras_diferentes(palavras))
-
-# wal = total_caracteres/len(palavras)
-# ttr = n_palavras_diferentes(palavras)/len(palavras)
-# hlr = n_palavras_unicas(palavras)/len(palavras)
-# sal = total_caracteres/len(sentencas)
-# sac = len(frases)/len(sentencas)
-
-
-# print("valor de wal é: ", wal)
-# print("valor de ttr é: ", ttr)
-# print("valor de hlr é: ", hlr)
-# print("valor de sal é: ", sal)
-# print("valor de sac é: ", sac)
