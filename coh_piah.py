@@ -80,9 +80,9 @@ def n_palavras_diferentes(lista_palavras):
 def compara_assinatura(as_a, as_b):
     """IMPLEMENTAR. Essa funcao recebe duas assinaturas de texto e deve devolver o grau de similaridade nas assinaturas."""
     i = 0
-    somatoria =0
+    somatoria = 0
     while i < len(as_b):
-        somatoria += abs(as_a[i] - as_b[i])
+        somatoria = somatoria+ (abs(as_a[i] - as_b[i]))
         i = i + 1
     grau_similaridade = somatoria/6
 
@@ -123,19 +123,44 @@ def calcula_assinatura(texto):
 
 def avalia_textos(textos, ass_cp):
     """IMPLEMENTAR. Essa funcao recebe uma lista de textos e uma assinatura ass_cp e deve devolver o numero (1 a n) do texto com maior probabilidade de ter sido infectado por COH-PIAH."""
-    print (textos)
-    print (ass_cp)
-    pass
-def main():
-    as_cp = []
-    as_b = (le_assinatura())
-    textos = le_textos()
     i = 0
-    while i < len(textos):
-        print("Este é o texto", i+1)
+    as_a = calcula_assinatura(textos[i])
+    grau_similaridade = compara_assinatura(as_a, ass_cp)
+
+    menor_grau = compara_assinatura(as_a, ass_cp)
+    texto_infectado = 0
+    i = i + 1
+    while i < (len(textos)):
         as_a = calcula_assinatura(textos[i])
-        as_cp.append((compara_assinatura(as_a, as_b)))
+        grau_similaridade = ((compara_assinatura(as_a, ass_cp)))
+        if grau_similaridade < menor_grau:
+            menor_grau = grau_similaridade
+            texto_infectado = i
         i = i + 1
-    avalia_textos(textos, as_cp)
+    print("O autor do texto %d está infectado com COH-PIAH" % (texto_infectado))
+    return texto_infectado + 1
+    #i=0
+    #menor = 100000000
+    #while i < len(textos):
+    #    if ass_cp[i] < menor:
+    #        menor = ass_cp[i]
+    #        i = i + 1
+    #    else:
+    #        i = i + 1
+    #return ass_cp.index(menor)
+    #return ass_cp.index(menor) + 1
+
+
+
+def main():
+    ass_cp = le_assinatura()
+    textos = le_textos()
+   # i = 0
+   # while i < len(textos):
+   #     as_a = calcula_assinatura(textos[i])
+   #     grau_similaridade = ((compara_assinatura(as_a, as_cp)))
+   #     i = i + 1
+    infectado = avalia_textos(textos, ass_cp)
+   # print("O autor do texto", infectado , "está infectado com COH-PIAH")
 
 main()
