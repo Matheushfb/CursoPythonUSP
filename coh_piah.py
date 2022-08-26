@@ -139,28 +139,11 @@ def avalia_textos(textos, ass_cp):
         i = i + 1
     print("O autor do texto %d está infectado com COH-PIAH" % (texto_infectado))
     return texto_infectado + 1
-    #i=0
-    #menor = 100000000
-    #while i < len(textos):
-    #    if ass_cp[i] < menor:
-    #        menor = ass_cp[i]
-    #        i = i + 1
-    #    else:
-    #        i = i + 1
-    #return ass_cp.index(menor)
-    #return ass_cp.index(menor) + 1
-
-
 
 def main():
     ass_cp = le_assinatura()
     textos = le_textos()
-   # i = 0
-   # while i < len(textos):
-   #     as_a = calcula_assinatura(textos[i])
-   #     grau_similaridade = ((compara_assinatura(as_a, as_cp)))
-   #     i = i + 1
-    infectado = avalia_textos(textos, ass_cp)
-   # print("O autor do texto", infectado , "está infectado com COH-PIAH")
+   infectado = avalia_textos(textos, ass_cp)
+
 
 main()
