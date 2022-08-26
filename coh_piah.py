@@ -143,7 +143,7 @@ def avalia_textos(textos, ass_cp):
 def main():
     ass_cp = le_assinatura()
     textos = le_textos()
-   infectado = avalia_textos(textos, ass_cp)
+    infectado = avalia_textos(textos, ass_cp)
 
 
 main()
